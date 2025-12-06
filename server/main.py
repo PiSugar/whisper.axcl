@@ -10,7 +10,7 @@ port = int(os.environ.get('WHISPER_PORT', 8801))
 
 # --- Configuration ---
 # Path to the C++ whisper executable, relative to the root of the project.
-whisper_executable_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'whisper'))
+whisper_executable_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'build', 'whisper'))
 # Arguments for the whisper executable to run in service mode.
 whisper_args = [
     # Add arguments like '--encoder', './models/small-encoder.axmodel' if they are not in the default location.
