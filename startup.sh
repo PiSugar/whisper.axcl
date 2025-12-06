@@ -12,7 +12,7 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=$WORKDIR
-ExecStart=$WORKDIR/serve.sh
+ExecStart=bash $WORKDIR/serve.sh
 Restart=on-failure
 LogLevel=info
 StandardOutput=$WORKDIR/server.log
