@@ -4,6 +4,7 @@ import subprocess
 import threading
 from flask import Flask, request, jsonify
 import time
+import json
 
 app = Flask(__name__)
 port = int(os.environ.get('WHISPER_PORT', 8801))
