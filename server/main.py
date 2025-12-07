@@ -15,6 +15,22 @@ whisper_executable_path = os.path.abspath(os.path.join(os.path.dirname(__file__)
 whisper_args = [
     # Add arguments like '--encoder', './models/small-encoder.axmodel' if they are not in the default location.
 ]
+
+# Load arguments from arguments.json if it exists
+try:
+    arguments_json_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'arguments.json'))
+    if os.path.exists(arguments_json_path):
+        with open(arguments_json_path, 'r') as f:
+            args_config = json.load(f)
+            # Map the arguments from the JSON file
+            for key, value in args_config.items():
+                whisper_args.append(f'--{key}')
+                whisper_args.append(str(value))
+        print(f'Loaded arguments from {arguments_json_path}')
+    else:
+        print(f'No arguments.json found at {arguments_json_path}, using default arguments')
+except Exception as e:
+    print(f'Error loading arguments.json: {e}')
 # --- End Configuration ---
 
 whisper_process = None
