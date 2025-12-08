@@ -18,7 +18,9 @@ pip install -r server/requirements.txt --break-system-packages
 ## Download Model
 
 https://huggingface.co/M5Stack/whisper-small-axmodel
+
 https://huggingface.co/M5Stack/whisper-tiny-axmodel
+
 https://huggingface.co/M5Stack/whisper-base-axmodel
 
 Place the downloaded model files in the `models/` directory.
