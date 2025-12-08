@@ -33,13 +33,12 @@ The default model is `whisper-small-axmodel`. To use a different model, create a
   "decoder_loop": "./models/small-decoder_loop.axmodel",
   "position_embedding": "./models/small-positional_embedding.bin",
   "token": "./models/small-tokens.txt",
-  "model_type": "small"
+  "model_type": "small",
+  "language": "en"
 }
 ```
 
-Other supported arguments include:
-
-- `language` if not specified, the model will attempt to detect the language automatically.
+If `language` is not specified, the model will attempt to detect the language automatically.
 
 ## Run Server
 
