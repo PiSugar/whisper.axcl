@@ -8,14 +8,14 @@ The original project loads the model (small size, ~10 seconds) for each command 
 
 A flask server is added to provide continuous speech-to-text transcription service.
 
-## build
+## Build
 
 ```bash
 ./build.sh
 pip install -r server/requirements.txt --break-system-packages
 ```
 
-## download model
+## Download Model
 
 https://huggingface.co/M5Stack/whisper-small-axmodel
 https://huggingface.co/M5Stack/whisper-tiny-axmodel
@@ -39,7 +39,7 @@ Other supported arguments include:
 
 - `language` if not specified, the model will attempt to detect the language automatically.
 
-## run server
+## Run Server
 
 working directory: project root
 
@@ -66,7 +66,7 @@ Response:
 }
 ```
 
-## Run as systemd service
+## Run as Systemd Service
 
 This script sets up the transcription server to run as a systemd service, ensuring it starts on boot and restarts on failure.
 
