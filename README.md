@@ -8,11 +8,23 @@ The original project loads the model (small size, ~10 seconds) for each command 
 
 A flask server is added to provide continuous speech-to-text transcription service.
 
+## Prerequisites
+
+Building this project requires `cmake`, make sure to install it first:
+
+```bash
+sudo apt update
+sudo apt install -y cmake
+```
+
 ## Build
 
 ```bash
-./build.sh
+cd
+git clone https://github.com/PiSugar/whisper.axcl.git
+cd whisper.axcl
 pip install -r server/requirements.txt --break-system-packages
+./build.sh
 ```
 
 ## Download Model
