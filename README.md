@@ -28,11 +28,11 @@ The default model is `whisper-small-axmodel`. To use a different model, create a
 
 ```json
 {
-  "encoder": "./models/small-encoder.axmodel",
-  "decoder_main": "./models/small-decoder_main.axmodel",
-  "decoder_loop": "./models/small-decoder_loop.axmodel",
-  "position_embedding": "./models/small-positional_embedding.bin",
-  "token": "./models/small-tokens.txt",
+  "encoder": "/home/pi/whisper-small-axmodel/ax650/small-encoder.axmodel",
+  "decoder_main": "/home/pi/whisper-small-axmodel/ax650/small-decoder-main.axmodel",
+  "decoder_loop": "/home/pi/whisper-small-axmodel/ax650/small-decoder-loop.axmodel",
+  "position_embedding": "/home/pi/whisper-small-axmodel/small-positional_embedding.bin",
+  "token": "/home/pi/whisper-small-axmodel/small-tokens.txt",
   "model_type": "small",
   "language": "en"
 }
