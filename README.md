@@ -35,8 +35,7 @@ https://huggingface.co/M5Stack/whisper-tiny-axmodel
 
 https://huggingface.co/M5Stack/whisper-base-axmodel
 
-Place the downloaded model files in the `models/` directory.
-The default model is `whisper-small-axmodel`. To use a different model, create a `arguments.json` file in the project root with the following content:
+You can clone the model repositories and link them in `arguments.json` for easier management:
 
 ```json
 {
