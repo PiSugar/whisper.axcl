@@ -115,13 +115,15 @@ def recognize():
     
     # if base64_data is provided, decode it and save to a temporary file
     if not file_path_exists and base64_data is not None:
-        try:
-            # create a temporary file in /tmp directory
-            if not os.path.exists(os.path.join('/tmp')):
-                os.makedirs(os.path.join('/tmp'))
-                
+        try:        
             # use timestamp to ensure unique file names
             file_path = os.path.join('/tmp', f'temp_audio_file_{int(time.time())}.wav')
+            
+            # Ensure the directory exists
+            output_dir = os.path.dirname(file_path)
+            if output_dir:
+                os.makedirs(output_dir, exist_ok=True)
+                
             with open(file_path, 'wb') as f:
                 f.write(base64.b64decode(base64_data))
         except Exception as e:
