@@ -61,11 +61,15 @@ bash serve.sh
 
 ## API Usage
 
-The server exposes a RESTful API on `http://localhost:8801` for transcription. You can send a POST request to the `/recognize` endpoint with a JSON payload containing the path to the audio file.
+The server exposes a RESTful API on `http://localhost:8801` for transcription. You can send a POST request to the `/recognize` endpoint with a JSON payload containing the path to the audio file. 
+
+`filePath` or `base64` is required. If both are provided, the server will check if the file at `filePath` exists first. If not, it will decode the `base64` data and save it to a temporary file for transcription.
+
 
 ```json
 {
-  "filePath": "/path/to/your/audio.wav"
+  "filePath": "/path/to/your/audio.wav",
+  "base64": "base64_encoded_audio_data"
 }
 ```
 

@@ -5,6 +5,7 @@ import threading
 from flask import Flask, request, jsonify
 import time
 import json
+import base64
 
 app = Flask(__name__)
 port = int(os.environ.get('WHISPER_PORT', 8801))
@@ -100,9 +101,33 @@ def recognize():
 
     data = request.get_json()
     file_path = data.get('filePath')
+    base64_data = data.get("base64")
 
-    if not file_path:
-        return jsonify({'error': 'Missing "filePath" in request body.'}), 400
+    if not file_path and not base64_data:
+        return jsonify({'error': 'Missing "filePath" or "base64" in request body.'}), 400
+    
+    # if file_path is provided, check if it exists
+    file_path_exists = False
+    if file_path:
+        file_path = os.path.abspath(file_path)  # Ensure absolute path
+        if os.path.exists(file_path):
+            file_path_exists = True
+    
+    # if base64_data is provided, decode it and save to a temporary file
+    if not file_path_exists and base64_data is not None:
+        try:        
+            # use timestamp to ensure unique file names
+            file_path = os.path.join('/tmp', f'temp_audio_file_{int(time.time())}.wav')
+            
+            # Ensure the directory exists
+            output_dir = os.path.dirname(file_path)
+            if output_dir:
+                os.makedirs(output_dir, exist_ok=True)
+                
+            with open(file_path, 'wb') as f:
+                f.write(base64.b64decode(base64_data))
+        except Exception as e:
+            return jsonify({'error': f'Failed to decode base64: {e}'}), 400
 
     if not whisper_process or whisper_process.poll() is not None:
         return jsonify({'error': 'Whisper service is not running.'}), 503
@@ -132,6 +157,13 @@ def recognize():
                 try:
                     result_line = [line for line in stdout_buffer.split('\n') if 'Result:' in line][0]
                     result = result_line.split('Result:', 1)[1].strip()
+                    
+                    # if the file is temporary, delete it
+                    if not file_path_exists:
+                        try:
+                            os.remove(file_path)
+                        except Exception as e:
+                            print(f"Failed to delete temporary file {file_path}: {e}")
                     
                     response = {
                         'filePath': file_path,
