@@ -166,7 +166,6 @@ def recognize():
                             print(f"Failed to delete temporary file {file_path}: {e}")
                     
                     response = {
-                        'filePath': file_path,
                         'recognition': result,
                     }
                     

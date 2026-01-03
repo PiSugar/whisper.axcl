@@ -65,7 +65,6 @@ The server exposes a RESTful API on `http://localhost:8801` for transcription. Y
 
 `filePath` or `base64` is required. If both are provided, the server will check if the file at `filePath` exists first. If not, it will decode the `base64` data and save it to a temporary file for transcription.
 
-
 ```json
 {
   "filePath": "/path/to/your/audio.wav",
@@ -73,11 +72,12 @@ The server exposes a RESTful API on `http://localhost:8801` for transcription. Y
 }
 ```
 
+Use `filePath` only when client and server are on the same device or share the same file system.
+
 Response:
 
 ```json
 {
-  "filePath": "/path/to/your/audio.wav",
   "recognition": "How is your day?"
 }
 ```
