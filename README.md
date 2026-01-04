@@ -17,11 +17,11 @@ sudo apt update
 sudo apt install -y cmake
 ```
 
-## Build
+## Clone and build
 
 ```bash
 cd
-git clone https://github.com/PiSugar/whisper.axcl.git
+git clone https://github.com/PiSugar/whisper.axcl.git --depth=1
 cd whisper.axcl
 pip install -r server/requirements.txt --break-system-packages
 ./build.sh
